@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.shape.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<?import org.gillius.jfxutils.chart.StableTicksAxis?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.nemanja.arduino.view.MainFXMLController">
+    <children>
+        <TabPane layoutX="14.0" layoutY="14.0" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <tabs>
+                <Tab text="Trenutno stanje uredjaja">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: skyblue; -fx-border-color: black;" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+                                    <children>
+                                        <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="100.0">
+                                            <children>
+                                                <Label text="Lokacija:" textFill="WHITE">
+                                                    <font>
+                                                        <Font name="Consolas" size="16.0" />
+                                                    </font>
+                                                </Label>
+                                                <Label text="IP adresa:" textFill="WHITE">
+                                                    <font>
+                                                        <Font name="Consolas" size="16.0" />
+                                                    </font>
+                                                </Label>
+                                                <Label text="Mod rada:" textFill="WHITE">
+                                                    <font>
+                                                        <Font name="Consolas" size="16.0" />
+                                                    </font>
+                                                </Label>
+                                                <Label text="Status:" textFill="WHITE">
+                                                    <font>
+                                                        <Font name="Consolas" size="16.0" />
+                                                    </font>
+                                                </Label>
+                                            </children>
+                                            <padding>
+                                                <Insets right="10.0" />
+                                            </padding>
+                                        </VBox>
+                                        <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="160.0">
+                                            <children>
+                                                <Label fx:id="locationValue" text="NEDOSTUPNO">
+                                                    <font>
+                                                        <Font name="Consolas Bold" size="16.0" />
+                                                    </font>
+                                                </Label>
+                                                <Label fx:id="ipValue" text="NEDOSTUPNO">
+                                                    <font>
+                                                        <Font name="Consolas Bold" size="16.0" />
+                                                    </font>
+                                                </Label>
+                                                <Label fx:id="modValue" text="NEDOSTUPNO">
+                                                    <font>
+                                                        <Font name="Consolas Bold" size="16.0" />
+                                                    </font>
+                                                </Label>
+                                                <Label fx:id="deviceStatusValue" text="NEDOSTUPNO">
+                                                    <font>
+                                                        <Font name="Consolas Bold" size="16.0" />
+                                                    </font>
+                                                </Label>
+                                            </children>
+                                        </VBox>
+                                        <HBox alignment="CENTER">
+                                            <children>
+                                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="150.0">
+                                                    <children>
+                                                        <Label text="Klima uređaj:" textFill="WHITE">
+                                                            <font>
+                                                                <Font name="Consolas" size="16.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <Label fx:id="acLabel" text="ISKLJUČEN">
+                                                            <font>
+                                                                <Font name="Consolas" size="24.0" />
+                                                            </font>
+                                                        </Label>
+                                                    </children>
+                                                </VBox>
+                                                <ImageView pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@../images/ac.png" />
+                                                    </image>
+                                                </ImageView>
+                                            </children>
+                                            <padding>
+                                                <Insets right="20.0" />
+                                            </padding>
+                                        </HBox>
+                                        <HBox alignment="CENTER">
+                                            <children>
+                                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="150.0">
+                                                    <children>
+                                                        <Label text="Ventilator:" textFill="WHITE">
+                                                            <font>
+                                                                <Font name="Consolas" size="16.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <Label fx:id="fanLabel" text="ISKLJUČEN">
+                                                            <font>
+                                                                <Font name="Consolas" size="24.0" />
+                                                            </font>
+                                                        </Label>
+                                                    </children>
+                                                </VBox>
+                                                <ImageView pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@../images/fan.png" />
+                                                    </image>
+                                                </ImageView>
+                                            </children>
+                                        </HBox>
+                                    </children>
+                                    <padding>
+                                        <Insets left="20.0" />
+                                    </padding>
+                                </HBox>
+                                <VBox layoutY="133.0" prefHeight="298.0" prefWidth="760.0" spacing="10.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
+                                    <children>
+                                        <HBox alignment="CENTER_LEFT" spacing="10.0" style="-fx-border-color: black;">
+                                            <children>
+                                                <ImageView fx:id="temperatureImage" fitHeight="64.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@../images/temperature.png" />
+                                                    </image>
+                                                </ImageView>
+                                                <Label prefHeight="43.0" prefWidth="230.0" text="Temperatura">
+                                                    <font>
+                                                        <Font name="Consolas" size="36.0" />
+                                                    </font>
+                                                </Label>
+                                                <Label fx:id="temperatureValue" alignment="CENTER_RIGHT" prefWidth="150.0" text="0">
+                                                    <font>
+                                                        <Font name="Consolas Bold" size="36.0" />
+                                                    </font>
+                                                </Label>
+                                                <Label fx:id="temperatureChangeValue" alignment="CENTER_RIGHT" prefWidth="150.0" text="0" textFill="#0000004d">
+                                                    <font>
+                                                        <Font name="Consolas" size="36.0" />
+                                                    </font>
+                                                </Label>
+                                                <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="100.0" spacing="5.0">
+                                                    <children>
+                                                        <Label fx:id="modtminLabel" text="0" textFill="#00000080">
+                                                            <font>
+                                                                <Font name="Consolas" size="18.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <Label fx:id="modtmaxLabel" text="0" textFill="#00000080">
+                                                            <font>
+                                                                <Font name="Consolas" size="18.0" />
+                                                            </font>
+                                                        </Label>
+                                                    </children>
+                                                </VBox>
+                                            </children>
+                                            <padding>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                            </padding>
+                                        </HBox>
+                                        <HBox alignment="CENTER_LEFT" spacing="10.0" style="-fx-border-color: black;">
+                                            <children>
+                                                <ImageView fx:id="temperatureImage1" fitHeight="64.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@../images/humidity.png" />
+                                                    </image>
+                                                </ImageView>
+                                                <Label prefHeight="43.0" prefWidth="230.0" text="Vlažnost">
+                                                    <font>
+                                                        <Font name="Consolas" size="36.0" />
+                                                    </font>
+                                                </Label>
+                                                <Label fx:id="humidityValue" alignment="CENTER_RIGHT" prefWidth="150.0" text="0">
+                                                    <font>
+                                                        <Font name="Consolas Bold" size="36.0" />
+                                                    </font>
+                                                </Label>
+                                                <Label fx:id="humidityChangeValue" alignment="CENTER_RIGHT" prefWidth="150.0" text="0" textFill="#0000004d">
+                                                    <font>
+                                                        <Font name="Consolas" size="36.0" />
+                                                    </font>
+                                                </Label>
+                                                <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="100.0" spacing="5.0">
+                                                    <children>
+                                                        <Label fx:id="modvminLabel" text="0" textFill="#00000080">
+                                                            <font>
+                                                                <Font name="Consolas" size="18.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <Label fx:id="modvmaxLabel" text="0" textFill="#00000080">
+                                                            <font>
+                                                                <Font name="Consolas" size="18.0" />
+                                                            </font>
+                                                        </Label>
+                                                    </children>
+                                                </VBox>
+                                            </children>
+                                            <padding>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                            </padding>
+                                        </HBox>
+                                        <HBox alignment="CENTER_LEFT" spacing="10.0" style="-fx-border-color: black;">
+                                            <children>
+                                                <ImageView fx:id="temperatureImage2" fitHeight="64.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@../images/co2.png" />
+                                                    </image>
+                                                </ImageView>
+                                                <Label prefHeight="43.0" prefWidth="229.0" text="CO2">
+                                                    <font>
+                                                        <Font name="Consolas" size="36.0" />
+                                                    </font>
+                                                </Label>
+                                                <Label fx:id="co2Value" alignment="CENTER_RIGHT" prefWidth="150.0" text="0">
+                                                    <font>
+                                                        <Font name="Consolas Bold" size="36.0" />
+                                                    </font>
+                                                </Label>
+                                                <Label fx:id="co2ChangeValue" alignment="CENTER_RIGHT" prefWidth="150.0" text="0" textFill="#0000004d">
+                                                    <font>
+                                                        <Font name="Consolas" size="36.0" />
+                                                    </font>
+                                                </Label>
+                                                <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="100.0" spacing="5.0">
+                                                    <children>
+                                                        <Label fx:id="modcminLabel" text="0" textFill="#00000080">
+                                                            <font>
+                                                                <Font name="Consolas" size="18.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <Label fx:id="modcmaxLabel" text="0" textFill="#00000080">
+                                                            <font>
+                                                                <Font name="Consolas" size="18.0" />
+                                                            </font>
+                                                        </Label>
+                                                    </children>
+                                                </VBox>
+                                            </children>
+                                            <padding>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                            </padding>
+                                        </HBox>
+                                    </children>
+                                </VBox>
+                                <ScrollPane layoutX="20.0" layoutY="450.0" prefViewportHeight="81.0" prefViewportWidth="760.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="450.0">
+                                    <content>
+                                        <Label fx:id="logLabel" layoutX="14.0" layoutY="443.0" wrapText="true" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="450.0">
+                                            <padding>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                            </padding>
+                                            <font>
+                                                <Font name="Consolas" size="12.0" />
+                                            </font>
+                                        </Label>
+                                    </content>
+                                </ScrollPane>
+                                <Label fx:id="statusLabel" style="-fx-background-color: black;" text="Status" textFill="#ffffff4d" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                    <padding>
+                                        <Insets left="10.0" />
+                                    </padding>
+                                    <font>
+                                        <Font name="Consolas" size="12.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab text="Istorija promjena">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <LineChart fx:id="chart" layoutX="14.0" layoutY="56.0" legendVisible="false" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="45.0">
+                                    <xAxis>
+                                        <StableTicksAxis side="BOTTOM" />
+                                    </xAxis>
+                                    <yAxis>
+                                        <StableTicksAxis side="LEFT" />
+                                    </yAxis>
+<!--                                                                         <xAxis>
+                                        <NumberAxis side="BOTTOM" />
+                                    </xAxis>
+                                    <yAxis>
+                                        <NumberAxis side="LEFT" />
+                                    </yAxis>-->
+                                </LineChart>
+                                <TitledPane expanded="false" layoutX="14.0" layoutY="14.0" text="Filter" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                                    <content>
+                                        <VBox prefWidth="758.0" spacing="5.0">
+                                            <children>
+                                                <HBox alignment="CENTER_LEFT" layoutX="14.0" layoutY="14.0" spacing="5.0">
+                                                    <children>
+                                                        <Label alignment="CENTER_RIGHT" prefHeight="25.0" prefWidth="100.0" text="Senzor:">
+                                                            <font>
+                                                                <Font name="Consolas" size="14.0" />
+                                                            </font>
+                                                            <padding>
+                                                                <Insets right="10.0" />
+                                                            </padding>
+                                                        </Label>
+                                                        <ComboBox fx:id="sensorSelectComboBox" prefHeight="25.0" prefWidth="174.0" />
+                                                    </children>
+                                                </HBox>
+                                                <HBox spacing="5.0">
+                                                    <children>
+                                                        <Label alignment="CENTER_RIGHT" prefHeight="25.0" prefWidth="100.0" text="Datum od:">
+                                                            <font>
+                                                                <Font name="Consolas" size="14.0" />
+                                                            </font>
+                                                            <padding>
+                                                                <Insets right="10.0" />
+                                                            </padding>
+                                                        </Label>
+                                                        <DatePicker fx:id="fromDatePicker" />
+                                                        <Label alignment="CENTER_RIGHT" prefHeight="25.0" prefWidth="100.0" text="Vrijeme od:">
+                                                            <font>
+                                                                <Font name="Consolas" size="14.0" />
+                                                            </font>
+                                                            <padding>
+                                                                <Insets right="10.0" />
+                                                            </padding>
+                                                        </Label>
+                                                        <TextField fx:id="fromTime" promptText="00:00" />
+                                                    </children>
+                                                </HBox>
+                                                <HBox spacing="5.0">
+                                                    <children>
+                                                        <Label alignment="CENTER_RIGHT" prefHeight="25.0" prefWidth="100.0" text="Datum do:">
+                                                            <font>
+                                                                <Font name="Consolas" size="14.0" />
+                                                            </font>
+                                                            <padding>
+                                                                <Insets right="10.0" />
+                                                            </padding>
+                                                        </Label>
+                                                        <DatePicker fx:id="toDatePicker" />
+                                                        <Label alignment="CENTER_RIGHT" prefHeight="25.0" prefWidth="100.0" text="Vrijeme do:">
+                                                            <font>
+                                                                <Font name="Consolas" size="14.0" />
+                                                            </font>
+                                                            <padding>
+                                                                <Insets right="10.0" />
+                                                            </padding>
+                                                        </Label>
+                                                        <TextField fx:id="toTime" promptText="00:00" />
+                                                    </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER_RIGHT" spacing="5.0">
+                                                    <children>
+                                                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#addDataToChart" prefHeight="25.0" prefWidth="100.0" text="Traži" />
+                                                    </children>
+                                                </HBox>
+                                            </children>
+                                        </VBox>
+                                    </content>
+                                </TitledPane>
+                        <Label fx:id="pointedValueLabel" alignment="CENTER" layoutX="386.0" layoutY="541.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0">
+                           <font>
+                              <Font name="Consolas Bold" size="12.0" />
+                           </font>
+                        </Label>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab text="Statistika">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <VBox layoutX="167.0" layoutY="105.0" prefHeight="200.0" prefWidth="100.0" spacing="10.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+                                    <children>
+                                        <Label text="Temperatura:" />
+                                        <TableView fx:id="temperatureTable" prefHeight="200.0" prefWidth="200.0">
+                                            <columns>
+                                                <TableColumn prefWidth="75.0" text="Period" />
+                                                <TableColumn prefWidth="75.0" text="Minimum" />
+                                                <TableColumn prefWidth="75.0" text="Maksimum" />
+                                                <TableColumn prefWidth="75.0" text="Prosjek" />
+                                            </columns>
+                                            <columnResizePolicy>
+                                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                            </columnResizePolicy>
+                                        </TableView>
+                                        <Label text="Vlažnost" />
+                                        <TableView fx:id="humidityTable" prefHeight="200.0" prefWidth="200.0">
+                                            <columnResizePolicy>
+                                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                            </columnResizePolicy>
+                                            <columns>
+                                                <TableColumn prefWidth="75.0" text="Period" />
+                                                <TableColumn prefWidth="75.0" text="Minimum" />
+                                                <TableColumn prefWidth="75.0" text="Maksimum" />
+                                                <TableColumn prefWidth="75.0" text="Prosjek" />
+                                            </columns>
+                                        </TableView>
+                                        <Label text="CO2" />
+                                        <TableView fx:id="co2Table" prefHeight="200.0" prefWidth="200.0">
+                                            <columnResizePolicy>
+                                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                            </columnResizePolicy>
+                                            <columns>
+                                                <TableColumn prefWidth="75.0" text="Period" />
+                                                <TableColumn prefWidth="75.0" text="Minimum" />
+                                                <TableColumn prefWidth="75.0" text="Maksimum" />
+                                                <TableColumn prefWidth="75.0" text="Prosjek" />
+                                            </columns>
+                                        </TableView>
+                                    </children>
+                                </VBox>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </children>
+</AnchorPane>
